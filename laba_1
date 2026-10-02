@@ -1,1 +1,36 @@
-cbcbc
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+    double x, y, U;
+    double xn = 1, xk = 4, hx = 2;
+    double yn = 2, yk = 5, hy = 2.5;
+    double min_var, var1, var2, num, den;
+    
+    for (x = xn; x <= xk; x += hx)
+    {
+        for(y = yn; y <= yk; y += hy)
+        {
+            var1 = pow(sin(x), 2) + exp(3);
+            var2 = fabs(log(fabs(x + pow(y, 3))));
+            
+            if (var1 < var2) {
+                min_var = var1;
+            } else {
+                min_var = var2;
+            }
+            
+            if (min_var < 1) {
+                U = 2 * pow(y, x);
+            } else {
+                num = x * pow(y, 2);
+                den = 1 - tan(x - pow(y, 2));
+                U = cbrt(num / den);
+            }
+            printf("%.1f\t%.1f\t%.2f\n", x, y, U);
+        }
+        
+    }
+    return 0;
+}

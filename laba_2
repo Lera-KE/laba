@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int Akk(m, n) 
+{
+    if (m == 0) 
+        return n + 1;
+        
+    if (m > 0 && n == 0) 
+        return Akk(m - 1, 1);
+        
+    return Akk(m - 1, Akk(m, n - 1));
+}
+
+int main() 
+{
+    int m, n;
+    printf("Введите два натуральных числа: \n");
+    
+    if (scanf("%i %i", &m, &n) != 2) 
+    {
+        printf("Ошибка\n");
+        return 1;
+    }
+    
+    if (m < 0 || n < 0)
+    {
+        printf("Ошибка\n");
+        return 1;
+    }
+
+    printf("%i\n", Akk(m, n));
+    return 0;
+}
